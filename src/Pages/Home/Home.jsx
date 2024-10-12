@@ -109,7 +109,7 @@ const Home = () => {
       <div className="relative z-10 flex flex-col h-full px-4 md:px-8">
         <Navbar handleScrollToSection={handleScrollToSection} />
         <div className="text-6xl text-center text-white font-extrabold mb-4 mt-8">
-          <p className="glow-text">I Write Code for You</p>
+          <p className="glow-text">I Write Code(); for You</p>
         </div>
         <div className="text-xl text-center text-gray-300 mb-6">
           <p>Making your tasks easier and more comfortable.</p>
@@ -129,12 +129,12 @@ const Home = () => {
           />
         </div>
         <div className="relative bg-cover bg-center">
-          <div className="flex items-center justify-between flex-wrap">
-            <div className="text-white text-lg ml-8 mt-20 md:mt-40">
+          <div className="flex lg:items-center lg:justify-between ">
+            <div className="text-white lg:text-lg md:text-xs ml-8 mt-20 md:mt-40">
               <p className="font-bold">☼ Don't Forget to Sleep</p>
               <p className="mt-1">Coding is great, but health comes first!</p>
             </div>
-            <div className="text-white text-lg mr-8 mt-20 md:mt-40">
+            <div className="text-white lg:text-lg md:text-xs ml-8 mt-20 md:mt-40">
               <p className="font-bold">What are Sigma Individuals Searching For? ☼</p>
               <p className="mt-1">Skibidi Stars</p>
             </div>

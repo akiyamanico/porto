@@ -6,14 +6,14 @@ const Experience = () => {
           <div className="border-r-4 pr-5 text-3xl mb-8 md:mb-0">
             <p className="font-semibold">Experience</p>
           </div>
-          <div className="border-r-4 pl-5 mb-8 md:mb-0">
+          <div className="border-r-4 pl-5 mb-8 md:mb-0 pr-2">
             <p className="underline underline-offset-4 text-xl">Organizational</p>
             <div className="text-lg mt-2">
               <p>Forum Studi Informatika</p>
               <p>Backend Developer / Consultant · May 2018 - September 2023</p>
             </div>
           </div>
-          <div className="pl-5">
+          <div className="pl-5 pr-2">
             <p className="underline underline-offset-4 text-xl">Work Experience</p>
             <div className="text-lg mt-2">
               <p>CV. Mediatama Web Indonesia (Intern)</p>

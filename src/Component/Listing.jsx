@@ -37,14 +37,14 @@ const Listing = () => {
   };
 
   return (
-    <div className="bg-transparent backdrop-blur-sm text-slate-800 p-8 ">
-      <div className="flex flex-wrap justify-between items-center mb-4 text-slate-800 text-lg">
+    <div className="bg-transparent backdrop-blur-sm text-white p-8 ">
+      <div className="flex flex-wrap justify-between items-center mb-4 text-white text-lg">
         <div className="flex space-x-4 sm:space-x-8">
           <span
             className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
               selectedTab === "About me"
                 ? "border-b-2 border-yellow-500 text-yellow-500"
-                : "border-b-2 border-transparent text-slate-800"
+                : "border-b-2 border-transparent text-white"
             }`}
             onClick={() => handleTabClick("About me")}
           >
@@ -54,7 +54,7 @@ const Listing = () => {
             className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
               selectedTab === "Tech Stacks"
                 ? "border-b-2 border-yellow-500 text-yellow-500"
-                : "border-b-2 border-transparent text-slate-800"
+                : "border-b-2 border-transparent text-white"
             }`}
             onClick={() => handleTabClick("Tech Stacks")}
           >
@@ -64,7 +64,7 @@ const Listing = () => {
             className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
               selectedTab === "Projects"
                 ? "border-b-2 border-yellow-500 text-yellow-500"
-                : "border-b-2 border-transparent text-slate-800"
+                : "border-b-2 border-transparent text-white"
             }`}
             onClick={() => handleTabClick("Projects")}
           >
@@ -135,7 +135,7 @@ const Listing = () => {
             <div className="border-l h-auto lg:h-48 mx-6 hidden lg:block"></div>
 
             <div className="text-sm lg:text-base">
-              <p className="text-slate-800 leading-relaxed font-light">
+              <p className="text-white leading-relaxed font-light">
                 Hello, my name is Fi Zilalil Huda, but people usually call me
                 Huda, Piji, or Flia (my internet nickname). I was born in Bekasi
                 on July 30, 1998. Since I was a child, I have been interested in
@@ -169,7 +169,7 @@ const Listing = () => {
             </div>
 
             <div className="text-center">
-              <p className="text-slate-800 text-sm sm:text-base">
+              <p className="text-white text-sm sm:text-base">
                 I have experience with the following technologies, which I use
                 to build full-stack web applications. While I typically use
                 Node.js as a backend framework, I also enjoy working with
