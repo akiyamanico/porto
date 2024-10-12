@@ -40,12 +40,7 @@ const Navbar = ({ handleScrollToSection }) => {
         >
           <span>Take a look about me</span>
         </div>
-        <div 
-          className="rounded-lg py-2 px-6 bg-transparent text-white hover:bg-white/10 transition duration-300 cursor-pointer"
-          onClick={handleScrollToSection}
-        >
-          <span>My Experience</span>
-        </div>
+    
       </div>
     </nav>
   );
