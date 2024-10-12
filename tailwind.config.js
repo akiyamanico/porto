@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Manrope', 'sans-serif'], // Manrope as the default sans font
+        sans: ['Manrope', 'sans-serif'], 
+        monaco : ['Monaco','monaco']
       },
     },
   },

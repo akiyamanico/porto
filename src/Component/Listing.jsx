@@ -28,7 +28,7 @@ const Listing = () => {
   };
 
   return (
-    <div className="bg-gray-200 backdrop-blur-md text-slate-800 p-8 shadow-md">
+    <div className="bg-transparent backdrop-blur-sm text-slate-800 p-8 ">
       <div className="flex flex-wrap justify-between items-center mb-4 text-slate-800 text-lg">
         <div className="flex space-x-4 sm:space-x-8">
           <span
@@ -70,8 +70,8 @@ const Listing = () => {
         }`}
       >
         {selectedTab === "About me" && (
-          <div className="flex flex-col lg:flex-row items-center lg:items-start p-6 bg-gray-400 rounded-lg shadow-lg">
-            <div className="text-center    lg:mr-6 mb-4 lg:mb-0">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start p-6 bg-gray-100 backdrop-blur-sm bg-opacity-30 rounded-lg shadow-lg ">
+            <div className="text-center lg:mr-6 mb-4 lg:mb-0">
               <div className="relative group w-32 lg:w-32 ">
                 <img
                   src={me}
@@ -79,13 +79,13 @@ const Listing = () => {
                   className="rounded-full shadow-lg w-full object-cover transform transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-60 rounded-full transition duration-500"></div>
-                <p className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm font-bold opacity-0 group-hover:opacity-100 transition duration-500">
+                <p className="font-Monaco absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm font-bold opacity-0 group-hover:opacity-100 transition duration-500">
                   Fi Zilalil Huda
                 </p>
               </div>
             </div>
 
-            <div className="border-l border-slate-300 h-auto lg:h-48 mx-6 hidden lg:block"></div>
+            <div className="border-l  h-auto lg:h-48 mx-6 hidden lg:block"></div>
 
             <div className="text-sm lg:text-base">
               <p className="text-slate-800 leading-relaxed font-light">

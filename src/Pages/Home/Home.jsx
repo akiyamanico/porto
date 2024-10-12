@@ -86,7 +86,7 @@
 
     return (
       <div className="h-full w-full  bg-indigo-900  ">
-      <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight} className="absolute top-0 left-0 w-full h-full z-0"/>
+      <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight} className="fixed  top-0 left-0 w-full h-full z-0"/>
       
       <div className="relative z-10 flex flex-col h-full">
         <Navbar />
