@@ -128,13 +128,13 @@ const Home = () => {
             text="LinkedIn Profile"
           />
         </div>
-        <div className="relative bg-cover bg-center">
+        <div className="relative bg-cover bg-center ">
           <div className="flex lg:items-center lg:justify-between ">
-            <div className="text-white lg:text-lg md:text-xs ml-8 mt-20 md:mt-40">
+            <div className="text-white lg:text-lg md:text-xs ml-8 mt-80 ">
               <p className="font-bold">☼ Don't Forget to Sleep</p>
               <p className="mt-1">Coding is great, but health comes first!</p>
             </div>
-            <div className="text-white lg:text-lg md:text-xs ml-8 mt-20 md:mt-40">
+            <div className="text-white lg:text-lg md:text-xs mr-8 mt-80 ">
               <p className="font-bold">What are Sigma Individuals Searching For? ☼</p>
               <p className="mt-1">Skibidi Stars</p>
             </div>
