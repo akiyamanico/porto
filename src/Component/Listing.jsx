@@ -10,12 +10,16 @@ import {
   SiMysql,
   SiPostgresql,
 } from "react-icons/si";
+import { motion } from "framer-motion";
+import codeLogo from "../Assets/github.png";
 
 import me from "../Assets/me.jpg";
 
 const Listing = () => {
   const [selectedTab, setSelectedTab] = useState("About me");
   const [isFading, setIsFading] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const handleTabClick = (tab) => {
     if (tab !== selectedTab) {
@@ -25,6 +29,11 @@ const Listing = () => {
         setIsFading(false);
       }, 300);
     }
+  };
+
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    setMousePosition({ x: clientX, y: clientY });
   };
 
   return (
@@ -70,22 +79,60 @@ const Listing = () => {
         }`}
       >
         {selectedTab === "About me" && (
-          <div className="flex flex-col lg:flex-row items-center lg:items-start p-6 bg-gray-100 backdrop-blur-sm bg-opacity-30 rounded-lg shadow-lg ">
-            <div className="text-center lg:mr-6 mb-4 lg:mb-0">
-              <div className="relative group w-32 lg:w-32 ">
-                <img
+          <div className="flex flex-col lg:flex-row bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+             
+            <div
+              className="text-center lg:mr-6 mb-4 lg:mb-0 relative"
+              onMouseMove={handleMouseMove}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <motion.div className="relative group w-32 lg:w-32">
+                <motion.img
                   src={me}
                   alt="About Me"
-                  className="rounded-full shadow-lg w-full object-cover transform transition duration-500 group-hover:scale-105"
+                  className="rounded-full shadow-lg w-full object-cover"
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.5 }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-60 rounded-full transition duration-500"></div>
-                <p className="font-Monaco absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm font-bold opacity-0 group-hover:opacity-100 transition duration-500">
+
+                {isHovered && (
+                  <motion.div
+                    className="absolute"
+                    style={{
+                      left: mousePosition.x - 100,
+                      top: mousePosition.y - 100,
+                      pointerEvents: "none",
+                    }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <img src={codeLogo} alt="Code Logo" className="w-12 h-12" />
+                  </motion.div>
+                )}
+
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-60 rounded-full"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 0.6 }}
+                  transition={{ duration: 0.5 }}
+                ></motion.div>
+
+                <motion.p
+                  className="font-Monaco absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm font-bold opacity-0"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   Fi Zilalil Huda
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
             </div>
 
-            <div className="border-l  h-auto lg:h-48 mx-6 hidden lg:block"></div>
+            <div className="border-l h-auto lg:h-48 mx-6 hidden lg:block"></div>
 
             <div className="text-sm lg:text-base">
               <p className="text-slate-800 leading-relaxed font-light">
@@ -104,8 +151,11 @@ const Listing = () => {
             </div>
           </div>
         )}
+
         {selectedTab === "Tech Stacks" && (
           <div className="mt-8">
+             <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+             
             <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mb-8">
               <SiSpringboot size={50} className="text-green-500" />
               <SiLaravel size={50} className="text-red-500" />
@@ -128,20 +178,50 @@ const Listing = () => {
                 MySQL, and PostgreSQL.
               </p>
             </div>
+            </div>
           </div>
         )}
 
         {selectedTab === "Projects" && (
-          <div className="mt-8">
-            <p className="text-slate-800 text-sm sm:text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              nulla elit, pretium non diam a, elementum tincidunt libero.
-              Curabitur consectetur est est, et aliquam velit vulputate nec.
-              Cras lorem sem, egestas at erat sed, scelerisque porta est. Aenean
-              quis ipsum venenatis, varius metus in, vestibulum felis. Phasellus
-              tristique ante augue, ut viverra tellus ornare a.
-            </p>
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
+              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+                <p className="underline text-xl mb-2">Pullhair</p>
+                <p className="text-lg">Technologies Used:</p>
+                <p className="text-md">Inertia.js (React.js) + Laravel  + MySQL</p>
+              </div>
+
+              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+                <a href="https://sirepi.disnakerin.padang.go.id" target="_blank"><p  className="underline text-xl mb-2">SIREPI</p></a>
+                <p className="text-lg">Technologies Used:</p>
+                <p className="text-md">Laravel (Frontend & Backend) + MySQL</p>
+              </div>
+
+              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+              <a href="https://adabiahpadang.or.id/" target="_blank"><p  className="underline text-xl mb-2">Portal Adabiah Padang</p></a>
+                <p className="text-lg">Technologies Used:</p>
+                <p className="text-md">Laravel (Frontend & Backend) + MySQL</p>
+              </div>
+
+              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+                <p className="underline text-xl mb-2">PropertyHub</p>
+                <p className="text-lg">Technologies Used:</p>
+                <p className="text-md">Laravel (Frontend & Backend) + MySQL</p>
+              </div>
+
+              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+                <p className="underline text-xl mb-2">Hayati Store</p>
+                <p className="text-lg">Technologies Used:</p>
+                <p className="text-md">React.js + Express.js + MySQL</p>
+              </div>
+
+              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+                <p className="underline text-xl mb-2">Take a look on my Repositories for more!</p>
+                <p className="text-lg">Also all of my dummy project for practice purpose</p>
+                <p className="text-md">Are available on my Github Repositories</p>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>
