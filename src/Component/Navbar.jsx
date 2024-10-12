@@ -26,12 +26,6 @@ const Navbar = ({ handleScrollToSection }) => {
             >
               Take a look about me
             </div>
-            <div 
-              className="py-2 px-6 text-white hover:bg-white/20 transition duration-300 cursor-pointer"
-              onClick={handleScrollToSection}
-            >
-              My Experience
-            </div>
           </div>
         )}
       </div>
