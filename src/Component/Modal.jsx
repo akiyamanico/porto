@@ -5,7 +5,7 @@ const Modal = ({ isOpen, onClose, project }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-10 text-black backdrop-blur-sm">
+    <div className="fixed inset-0 flex items-center justify-center z-10 text-black">
       <div
         className="fixed inset-0 "
         onClick={onClose}
