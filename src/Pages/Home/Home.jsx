@@ -159,10 +159,14 @@ const Home = () => {
                   <p className="font-semibold">Instagram</p>
                   <p className="text-sm">@fizilalilhuda_</p>
                 </a>
-                <a href="#" className="text-2xl text-center">
+                <span className="text-2xl text-center">
                   <p className="font-semibold">Discord</p>
                   <p className="text-sm">sandaranpangsit</p>
-                </a>
+                </span>
+                <span className="text-2xl text-center">
+                  <p className="font-semibold">Email : </p>
+                  <p className="text-sm">fizi8889@gmail.com / akiyamanico2@outlook.com </p>
+                </span>
               </div>
               <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2 text-2xl text-center mt-12">
                 <p>
