@@ -13,7 +13,7 @@ const Experience = () => {
               <p>Backend Developer / Consultant · May 2018 - September 2023</p>
             </div>
           </div>
-          <div className="pl-5 pr-2">
+          <div className="pl-5 pr-2 border-r-4  mb-8 md:mb-0 ">
             <p className="underline underline-offset-4 text-xl">Work Experience</p>
             <div className="text-lg mt-2">
               <p>CV. Mediatama Web Indonesia (Intern)</p>

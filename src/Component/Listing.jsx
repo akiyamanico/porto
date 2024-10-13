@@ -9,17 +9,26 @@ import {
   SiTailwindcss,
   SiMysql,
   SiPostgresql,
+  SiGo,
 } from "react-icons/si";
 import { motion } from "framer-motion";
 import codeLogo from "../Assets/github.png";
+import Modal from "./Modal";
 
 import me from "../Assets/me.jpg";
+import pullhair from "../Assets/Project/Pullhair/1.png";
+import sirepi from "../Assets/Project/Sirepi/1.png";
+import adabiah from "../Assets/Project/Adabiah/1.png";
+import propertyhub from "../Assets/Project/PropertyHub/1.png";
+import hayatistore from "../Assets/Project/Hayati Store/1.png";
 
 const Listing = () => {
   const [selectedTab, setSelectedTab] = useState("About me");
   const [isFading, setIsFading] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const handleTabClick = (tab) => {
     if (tab !== selectedTab) {
@@ -36,6 +45,44 @@ const Listing = () => {
     setMousePosition({ x: clientX, y: clientY });
   };
 
+  const projects = [
+    {
+      title: "Pullhair",
+      images: [pullhair],
+      description: "Developed a robust API to facilitate seamless communication between members, cashiers, and admins within a booking system. Implemented features that allowed users to select kapsters based on their availability and packages, optimizing the user experience for service delivery.",
+      techstack: "Inertia.js (React.js) + Laravel + MySQL",
+    },
+    {
+      title: "SIREPI",
+      images: [sirepi],
+      description: "Led the end-to-end development of the web application, collaborating with stakeholders to gather requirements and ensuring a responsive and user-friendly interface using Tailwind CSS while implementing backend functionalities with Laravel and MySQL.",
+      techstack: "Laravel (Frontend & Backend) + MySQL",
+    },
+    {
+      title: "Portal Adabiah Padang",
+      images: [adabiah],
+      description: "Responsible for identifying and resolving bugs on various pages to enhance user experience and ensure functionality. Implemented new features based on user feedback, contributing to the overall improvement and performance of the content management system.",
+      techstack: "Laravel (Frontend & Backend) + MySQL",
+    },
+    {
+      title: "PropertyHub",
+      images: [propertyhub],
+      description: "Integrated frontend components with backend services to create dynamic views based on real-time database interactions. Developed a comprehensive order management system that streamlined the ordering process, ensuring accuracy and efficiency in handling user requests.",
+      techstack: "Laravel (Frontend & Backend) + MySQL",
+    },
+    {
+      title: "Hayati Store",
+      images: [hayatistore],
+      description: "Developed a simple shopping system that integrates customers and admins. This system allows the admin or owner to perform data grouping using k-means clustering, providing better insights for data analysis.",
+      techstack: "React.js + Express.js + MySQL",
+    },
+  ];
+
+  const openModal = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="bg-transparent backdrop-blur-sm text-white p-8 ">
       <div className="flex flex-wrap justify-between items-center mb-4 text-white text-lg">
@@ -43,7 +90,7 @@ const Listing = () => {
           <span
             className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
               selectedTab === "About me"
-                ? "border-b-2 border-yellow-500 text-yellow-500"
+                ? "border-b-2 border-teal-500 text-teal-500"
                 : "border-b-2 border-transparent text-white"
             }`}
             onClick={() => handleTabClick("About me")}
@@ -53,7 +100,7 @@ const Listing = () => {
           <span
             className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
               selectedTab === "Tech Stacks"
-                ? "border-b-2 border-yellow-500 text-yellow-500"
+                ? "border-b-2 border-teal-500 text-teal-500"
                 : "border-b-2 border-transparent text-white"
             }`}
             onClick={() => handleTabClick("Tech Stacks")}
@@ -63,7 +110,7 @@ const Listing = () => {
           <span
             className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
               selectedTab === "Projects"
-                ? "border-b-2 border-yellow-500 text-yellow-500"
+                ? "border-b-2 border-teal-500 text-teal-500"
                 : "border-b-2 border-transparent text-white"
             }`}
             onClick={() => handleTabClick("Projects")}
@@ -80,7 +127,6 @@ const Listing = () => {
       >
         {selectedTab === "About me" && (
           <div className="flex flex-col lg:flex-row bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-             
             <div
               className="text-center lg:mr-6 mb-4 lg:mb-0 relative"
               onMouseMove={handleMouseMove}
@@ -154,30 +200,31 @@ const Listing = () => {
 
         {selectedTab === "Tech Stacks" && (
           <div className="mt-8">
-             <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-             
-            <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mb-8">
-              <SiSpringboot size={50} className="text-green-500" />
-              <SiLaravel size={50} className="text-red-500" />
-              <SiMongodb size={50} className="text-green-600" />
-              <SiMysql size={50} className="text-blue-600" />
-              <SiPostgresql size={50} className="text-indigo-500" />
-              <SiReact size={50} className="text-blue-500" />
-              <SiNextdotjs size={50} className="text-black" />
-              <SiNodedotjs size={50} className="text-green-400" />
-              <SiTailwindcss size={50} className="text-blue-400" />
-            </div>
+            <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
+              <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mb-8">
+                <SiSpringboot size={50} className="text-green-500" />
+                <SiLaravel size={50} className="text-red-500" />
+                <SiMongodb size={50} className="text-green-600" />
+                <SiMysql size={50} className="text-blue-600" />
+                <SiPostgresql size={50} className="text-indigo-500" />
+                <SiReact size={50} className="text-blue-500" />
+                <SiNextdotjs size={50} className="text-black" />
+                <SiNodedotjs size={50} className="text-green-400" />
+                <SiTailwindcss size={50} className="text-blue-400" />
+                <SiGo size={50} className="text-blue-400" />
+              </div>
 
-            <div className="text-center">
-              <p className="text-white text-sm sm:text-base">
-                I have experience with the following technologies, which I use
-                to build full-stack web applications. While I typically use
-                Node.js as a backend framework, I also enjoy working with
-                frameworks like Laravel and Java Springboot for the backend,
-                ReactJS and NextJS for the frontend, and databases like MongoDB,
-                MySQL, and PostgreSQL.
-              </p>
-            </div>
+              <div className="text-center">
+                <p className="text-white text-sm sm:text-base">
+                  I have experience with a variety of technologies that I use to
+                  build full-stack web applications. While I typically use
+                  Express.js as a backend framework, I also enjoy working with
+                  frameworks like Laravel and Java Spring Boot for the backend.
+                  Golang also seems fun! For the frontend, I work with ReactJS
+                  and Next.js, and for databases, I use MongoDB, MySQL, and
+                  PostgreSQL.
+                </p>
+              </div>
             </div>
           </div>
         )}
@@ -185,42 +232,35 @@ const Listing = () => {
         {selectedTab === "Projects" && (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
-              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-                <p className="underline text-xl mb-2">Pullhair</p>
-                <p className="text-lg">Technologies Used:</p>
-                <p className="text-md">Inertia.js (React.js) + Laravel  + MySQL</p>
-              </div>
-
-              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-                <a href="https://sirepi.disnakerin.padang.go.id" target="_blank"><p  className="underline text-xl mb-2">SIREPI</p></a>
-                <p className="text-lg">Technologies Used:</p>
-                <p className="text-md">Laravel (Frontend & Backend) + MySQL</p>
-              </div>
-
-              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-              <a href="https://adabiahpadang.or.id/" target="_blank"><p  className="underline text-xl mb-2">Portal Adabiah Padang</p></a>
-                <p className="text-lg">Technologies Used:</p>
-                <p className="text-md">Laravel (Frontend & Backend) + MySQL</p>
-              </div>
-
-              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-                <p className="underline text-xl mb-2">PropertyHub</p>
-                <p className="text-lg">Technologies Used:</p>
-                <p className="text-md">Laravel (Frontend & Backend) + MySQL</p>
-              </div>
-
-              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-                <p className="underline text-xl mb-2">Hayati Store</p>
-                <p className="text-lg">Technologies Used:</p>
-                <p className="text-md">React.js + Express.js + MySQL</p>
-              </div>
-
-              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-                <p className="underline text-xl mb-2">Take a look on my Repositories for more!</p>
-                <p className="text-lg">Also all of my dummy project for practice purpose</p>
-                <p className="text-md">Are available on my Github Repositories</p>
+              {projects.map((project, index) => (
+                <div
+                  key={index}
+                  className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+                  onClick={() => openModal(project)}
+                >
+                  <p className="underline text-xl mb-2">{project.title}</p>
+                  <p className="text-lg">Technologies Used:</p>
+                  <p className="text-md">{project.techstack}</p>
+                </div>
+              ))}
+              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                <p className="underline text-xl mb-2">
+                  Take a look on my Repositories for more!
+                </p>
+                <p className="text-lg">
+                  Also all of my dummy project for practice purpose
+                </p>
+                <p className="text-lg">
+                  Are available on my Github Repositories
+                </p>
               </div>
             </div>
+
+            <Modal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              project={selectedProject}
+            />
           </>
         )}
       </div>

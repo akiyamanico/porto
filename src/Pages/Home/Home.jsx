@@ -99,7 +99,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="h-full w-full bg-indigo-900">
+    <div className="h-full w-full bg-gradient-to-r from-pink-400 via-orange-400 to-pink-500">
+
       <canvas
         ref={canvasRef}
         width={window.innerWidth}
@@ -128,13 +129,13 @@ const Home = () => {
             text="LinkedIn Profile"
           />
         </div>
-        <div className="relative bg-cover bg-center ">
+        <div className="relative bg-cover bg-center">
           <div className="flex lg:items-center lg:justify-between ">
-            <div className="text-white lg:text-lg md:text-xs ml-8 mt-80 ">
+            <div className="text-white lg:text-lg md:text-xs ml-8 mt-80 text-left">
               <p className="font-bold">☼ Don't Forget to Sleep</p>
               <p className="mt-1">Coding is great, but health comes first!</p>
             </div>
-            <div className="text-white lg:text-lg md:text-xs mr-8 mt-80 ">
+            <div className="text-white lg:text-lg md:text-xs mr-8 mt-80 text-right">
               <p className="font-bold">What are Sigma Individuals Searching For? ☼</p>
               <p className="mt-1">Skibidi Stars</p>
             </div>
@@ -145,13 +146,14 @@ const Home = () => {
             <Experience />
             <div className="text-white pt-2 pb-12">
               <div className="flex justify-center">
-                <p className="text-3xl font-semibold underline underline-offset-4">
+                <p className="text-3xl text-center font-semibold underline underline-offset-4">
                   Connect with me through these social media platforms!
                 </p>
               </div>
               <div className="flex flex-col items-center md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-16 mt-4">
                 <a
                   href="https://instagram.com/fizilalilhuda_"
+                  target="_blank"
                   className="text-2xl text-center"
                 >
                   <p className="font-semibold">Instagram</p>
