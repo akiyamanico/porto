@@ -183,8 +183,7 @@ const Listing = () => {
             <div className="text-sm lg:text-base">
               <p className="text-white leading-relaxed font-light">
                 Hello, my name is Fi Zilalil Huda, but people usually call me
-                Huda, Piji, or Flia (my internet nickname). I was born in Bekasi
-                on July 30, 1998. Since I was a child, I have been interested in
+                Huda, Piji, or Flia (my internet nickname). Since I was a child, I have been interested in
                 computer programming and always wanted to learn more about
                 technology. Besides programming, I also have a passion for
                 music—though my taste leans towards something a bit loud, like
