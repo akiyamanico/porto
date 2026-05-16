@@ -10,25 +10,15 @@ import {
   SiMysql,
   SiPostgresql,
   SiGo,
+  SiDotnet,
 } from "react-icons/si";
 import { motion } from "framer-motion";
-import codeLogo from "../Assets/github.png";
-import Modal from "./Modal";
 
 import me from "../Assets/me.jpg";
-import pullhair from "../Assets/Project/Pullhair/1.png";
-import sirepi from "../Assets/Project/Sirepi/1.png";
-import adabiah from "../Assets/Project/Adabiah/1.png";
-import propertyhub from "../Assets/Project/PropertyHub/1.png";
-import hayatistore from "../Assets/Project/Hayati Store/1.png";
 
 const Listing = () => {
   const [selectedTab, setSelectedTab] = useState("About me");
   const [isFading, setIsFading] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
 
   const handleTabClick = (tab) => {
     if (tab !== selectedTab) {
@@ -40,230 +30,279 @@ const Listing = () => {
     }
   };
 
-  const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    setMousePosition({ x: clientX, y: clientY });
-  };
-
   const projects = [
     {
+      title: "Danamon",
+      description: "Banking operational tools & reports for Bank Danamon.",
+      items: [
+        "Report LoanOps (RMS / MISCMS) — Developed operational loan reports.",
+        "Report EB — Developed EB reports.",
+        "Backdated Payment Simulation (RMS) — Built a backdated payment simulation tool to support transaction analysis.",
+        "Job Upload (CMS) - Implemented job upload feature for CMS",
+        "Manual Transaction (RMS) - Implemented manual transaction Partial and Settlement"
+      ],
+    },
+    {
+      title: "CBAS",
+      description: "Credit Bureau Automation System",
+      items: [
+        "V2 – Bulk Upload Data Debitor — Implemented a bulk debtor data upload feature within the CBAS newest system.",
+        "SKBF SLIK Reporting — Developed SLIK reports including Summary SLIK and Report Row SLIK within the CBAS SKBF system.",
+      ],
+    },
+    {
+      title: "Panin",
+      description: "E-Form System — Developed a loan application platform enabling debtors to submit financing requests digitally.",
+    },
+    {
       title: "Pullhair",
-      images: [pullhair],
-      description: "Developed a robust API to facilitate seamless communication between members, cashiers, and admins within a booking system. Implemented features that allowed users to select kapsters based on their availability and packages, optimizing the user experience for service delivery.",
-      techstack: "Inertia.js (React.js) + Laravel + MySQL",
+      description: "Developed a robust API to facilitate seamless communication between members, cashiers, and admins within a booking system. Implemented features that allowed users to select kapsters based on their availability and packages.",
     },
     {
       title: "SIREPI",
-      images: [sirepi],
       description: "Led the end-to-end development of the web application, collaborating with stakeholders to gather requirements and ensuring a responsive and user-friendly interface using Tailwind CSS while implementing backend functionalities with Laravel and MySQL.",
-      techstack: "Laravel (Frontend & Backend) + MySQL",
     },
     {
       title: "Portal Adabiah Padang",
-      images: [adabiah],
       description: "Responsible for identifying and resolving bugs on various pages to enhance user experience and ensure functionality. Implemented new features based on user feedback, contributing to the overall improvement and performance of the content management system.",
-      techstack: "Laravel (Frontend & Backend) + MySQL",
     },
     {
       title: "PropertyHub",
-      images: [propertyhub],
-      description: "Integrated frontend components with backend services to create dynamic views based on real-time database interactions. Developed a comprehensive order management system that streamlined the ordering process, ensuring accuracy and efficiency in handling user requests.",
-      techstack: "Laravel (Frontend & Backend) + MySQL",
+      description: "Integrated frontend components with backend services to create dynamic views based on real-time database interactions. Developed a comprehensive order management system that streamlined the ordering process.",
     },
     {
       title: "Hayati Store",
-      images: [hayatistore],
       description: "Developed a simple shopping system that integrates customers and admins. This system allows the admin or owner to perform data grouping using k-means clustering, providing better insights for data analysis.",
-      techstack: "React.js + Express.js + MySQL",
     },
   ];
 
-  const openModal = (project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
+  const techStacks = [
+    { icon: SiReact, name: "React.js", color: "#61DAFB" },
+    { icon: SiNextdotjs, name: "Next.js", color: "#1A1A1A" },
+    { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
+    { icon: SiLaravel, name: "Laravel", color: "#FF2D20" },
+    { icon: SiSpringboot, name: "Spring Boot", color: "#6DB33F" },
+    { icon: SiGo, name: "Go", color: "#00ADD8" },
+    { icon: SiMysql, name: "MySQL", color: "#4479A1" },
+    { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
+    { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
+    { icon: SiTailwindcss, name: "Tailwind", color: "#06B6D4" },
+    { icon: SiDotnet, name: ".NET C#", color: "#06B6D4" },
+  ];
+
+  const tabs = ["About me", "Tech Stacks", "Projects"];
 
   return (
-    <div className="bg-transparent backdrop-blur-sm text-white p-8 ">
-      <div className="flex flex-wrap justify-between items-center mb-4 text-white text-lg">
-        <div className="flex space-x-4 sm:space-x-8">
-          <span
-            className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
-              selectedTab === "About me"
-                ? "border-b-2 border-teal-500 text-teal-500"
-                : "border-b-2 border-transparent text-white"
-            }`}
-            onClick={() => handleTabClick("About me")}
-          >
-            About me
-          </span>
-          <span
-            className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
-              selectedTab === "Tech Stacks"
-                ? "border-b-2 border-teal-500 text-teal-500"
-                : "border-b-2 border-transparent text-white"
-            }`}
-            onClick={() => handleTabClick("Tech Stacks")}
-          >
-            Tech Stacks
-          </span>
-          <span
-            className={`cursor-pointer pb-2 transition-all duration-500 ease-in-out ${
-              selectedTab === "Projects"
-                ? "border-b-2 border-teal-500 text-teal-500"
-                : "border-b-2 border-transparent text-white"
-            }`}
-            onClick={() => handleTabClick("Projects")}
-          >
-            Projects
-          </span>
-        </div>
-      </div>
+    <section id="about" className="py-20 px-6 md:px-12 lg:px-16 bg-cream-100">
+      <div className="max-w-[1400px] mx-auto">
+        {/* Section Header */}
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-playfair text-4xl md:text-5xl font-bold text-gallery-dark mb-2">
+            The Exhibition
+          </h2>
+          <div className="section-divider" />
+          <p className="text-gallery-muted text-sm uppercase tracking-[0.2em] mt-3">
+            Discover who I am and what I build
+          </p>
+        </motion.div>
 
-      <div
-        className={`mt-8 transition-opacity duration-300 min-h-[300px] ${
-          isFading ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        {selectedTab === "About me" && (
-          <div className="flex flex-col lg:flex-row bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-            <div
-              className="text-center lg:mr-6 mb-4 lg:mb-0 relative"
-              onMouseMove={handleMouseMove}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+        {/* Tabs */}
+        <div className="flex gap-6 md:gap-10 mb-12 border-b border-gallery-border pb-0">
+          {tabs.map((tab) => (
+            <span
+              key={tab}
+              className={`tab-item ${selectedTab === tab ? "active" : ""}`}
+              onClick={() => handleTabClick(tab)}
             >
-              <motion.div className="relative group w-32 lg:w-32">
-                <motion.img
-                  src={me}
-                  alt="About Me"
-                  className="rounded-full shadow-lg w-full object-cover"
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.5 }}
-                />
+              {tab}
+            </span>
+          ))}
+        </div>
 
-                {isHovered && (
-                  <motion.div
-                    className="absolute"
-                    style={{
-                      left: mousePosition.x - 100,
-                      top: mousePosition.y - 100,
-                      pointerEvents: "none",
-                    }}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <img src={codeLogo} alt="Code Logo" className="w-12 h-12" />
-                  </motion.div>
-                )}
-
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-60 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 0.6 }}
-                  transition={{ duration: 0.5 }}
-                ></motion.div>
-
-                <motion.p
-                  className="font-Monaco absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm font-bold opacity-0"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  Fi Zilalil Huda
-                </motion.p>
-              </motion.div>
-            </div>
-
-            <div className="border-l h-auto lg:h-48 mx-6 hidden lg:block"></div>
-
-            <div className="text-sm lg:text-base">
-              <p className="text-white leading-relaxed font-light">
-                Hello, my name is Fi Zilalil Huda, but people usually call me
-                Huda, Piji, or Flia (my internet nickname). Since I was a child, I have been interested in
-                computer programming and always wanted to learn more about
-                technology. Besides programming, I also have a passion for
-                music—though my taste leans towards something a bit loud, like
-                metal (lmao). Currently, I’m focused on web development and
-                continuously learning to sharpen my skills in programming. I
-                also have experience as a videographer and photographer. In the
-                past, I worked as an editor, which has helped me develop a keen
-                eye for detail and creativity in visual storytelling.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {selectedTab === "Tech Stacks" && (
-          <div className="mt-8">
-            <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg   transition-transform duration-300 hover:-translate-y-2">
-              <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mb-8">
-                <SiSpringboot size={50} className="text-green-500" />
-                <SiLaravel size={50} className="text-red-500" />
-                <SiMongodb size={50} className="text-green-600" />
-                <SiMysql size={50} className="text-blue-600" />
-                <SiPostgresql size={50} className="text-indigo-500" />
-                <SiReact size={50} className="text-blue-500" />
-                <SiNextdotjs size={50} className="text-black" />
-                <SiNodedotjs size={50} className="text-green-400" />
-                <SiTailwindcss size={50} className="text-blue-400" />
-                <SiGo size={50} className="text-blue-400" />
+        {/* Tab Content */}
+        <div
+          className={`transition-opacity duration-300 min-h-[400px] ${
+            isFading ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          {/* ===== ABOUT ME ===== */}
+          {selectedTab === "About me" && (
+            <motion.div
+              className="flex flex-col lg:flex-row gap-10 items-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* Portrait */}
+              <div className="flex-shrink-0">
+                <div className="relative group">
+                  <motion.img
+                    src={me}
+                    alt="Fi Zilalil Huda"
+                    className="w-40 h-40 md:w-52 md:h-52 rounded-sm object-cover shadow-lg"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                  <div className="absolute inset-0 bg-vermillion/0 group-hover:bg-vermillion/10 transition-colors duration-500 rounded-sm" />
+                  {/* Frame corners */}
+                  <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-vermillion" />
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-vermillion" />
+                </div>
               </div>
 
-              <div className="text-center">
-                <p className="text-white text-sm sm:text-base">
+              {/* Bio text */}
+              <div className="flex-1">
+                <h3 className="font-playfair text-2xl md:text-3xl font-bold text-gallery-dark mb-4">
+                  Fi Zilalil Huda
+                </h3>
+                <div className="section-divider" />
+                <p className="text-gallery-muted leading-relaxed mt-4 text-sm md:text-base">
+                  Hello, my name is Fi Zilalil Huda, but people usually call me
+                  Huda, Piji, or Flia (my internet nickname). Since I was a child, I have been interested in
+                  computer programming and always wanted to learn more about
+                  technology. Besides programming, I also have a passion for
+                  music—though my taste leans towards something a bit loud, like
+                  metal (lmao).
+                </p>
+                <p className="text-gallery-muted leading-relaxed mt-4 text-sm md:text-base">
+                  Currently, I'm focused on web development and
+                  continuously learning to sharpen my skills in programming. I
+                  also have experience as a videographer and photographer. In the
+                  past, I worked as an editor, which has helped me develop a keen
+                  eye for detail and creativity in visual storytelling.
+                </p>
+
+                {/* Quick info */}
+                <div className="mt-8 flex flex-wrap gap-6">
+                  <div>
+                    <span className="text-xs uppercase tracking-[0.15em] text-gallery-muted font-medium">Location</span>
+                    <p className="text-gallery-dark font-medium mt-1">Jakarta, Indonesia</p>
+                  </div>
+                  <div>
+                    <span className="text-xs uppercase tracking-[0.15em] text-gallery-muted font-medium">Focus</span>
+                    <p className="text-gallery-dark font-medium mt-1">Backend Developer</p>
+                  </div>
+                  <div>
+                    <span className="text-xs uppercase tracking-[0.15em] text-gallery-muted font-medium">Status</span>
+                    <p className="text-vermillion font-medium mt-1">Open to Work</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {selectedTab === "Tech Stacks" && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-11 gap-4 mb-10">
+                {techStacks.map((tech, index) => (
+                  <motion.div
+                    key={tech.name}
+                    className="gallery-card rounded-lg p-5 flex flex-col items-center gap-3 cursor-default"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.06 }}
+                    whileHover={{ y: -4 }}
+                  >
+                    <tech.icon size={36} style={{ color: tech.color }} />
+                    <span className="text-xs font-medium text-gallery-dark uppercase tracking-wider">
+                      {tech.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="gallery-card rounded-lg p-6 max-w-2xl">
+                <p className="text-gallery-muted text-sm leading-relaxed">
                   I have experience with a variety of technologies that I use to
                   build full-stack web applications. While I typically use
                   Express.js as a backend framework, I also enjoy working with
-                  frameworks like Laravel and Java Spring Boot for the backend.
+                  frameworks like Laravel, Java Spring Boot, and C# .NET for the backend.
                   Golang also seems fun! For the frontend, I work with ReactJS
                   and Next.js, and for databases, I use MongoDB, MySQL, and
                   PostgreSQL.
                 </p>
               </div>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
 
-        {selectedTab === "Projects" && (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
-              {projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-                  onClick={() => openModal(project)}
+          {selectedTab === "Projects" && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div id="projects" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projects.map((project, index) => (
+                  <motion.div
+                    key={index}
+                    className="gallery-card rounded-lg p-6 group"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    whileHover={{ y: -6 }}
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <h4 className="font-playfair font-bold text-lg text-gallery-dark leading-tight">
+                        {project.title}
+                      </h4>
+                      <span className="text-vermillion text-lg font-playfair italic ml-2 opacity-30 group-hover:opacity-100 transition-opacity">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div className="section-divider" />
+                    <p className="text-gallery-muted text-sm leading-relaxed mt-3">
+                      {project.description}
+                    </p>
+                    {project.items && (
+                      <ul className="mt-3 space-y-2">
+                        {project.items.map((item, i) => (
+                          <li key={i} className="text-gallery-muted text-sm leading-relaxed flex gap-2">
+                            <span className="text-vermillion mt-0.5">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </motion.div>
+                ))}
+
+                {/* GitHub CTA */}
+                <motion.a
+                  href="https://github.com/akiyamanico"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gallery-card rounded-lg p-6 flex flex-col items-center justify-center text-center group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  whileHover={{ y: -6 }}
                 >
-                  <p className="underline text-xl mb-2">{project.title}</p>
-                  <p className="text-lg">Technologies Used:</p>
-                  <p className="text-md">{project.techstack}</p>
-                </div>
-              ))}
-              <div className="bg-white bg-opacity-20 backdrop:blur-md p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-2">
-                <p className="underline text-xl mb-2">
-                  Take a look on my Repositories for more!
-                </p>
-                <p className="text-lg">
-                  Also all of my dummy project for practice purpose
-                </p>
-                <p className="text-lg">
-                  Are available on my Github Repositories
-                </p>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C43A31" strokeWidth="1.5" className="mb-3 group-hover:scale-110 transition-transform">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  <p className="font-playfair font-bold text-gallery-dark mb-1">
+                    More on GitHub
+                  </p>
+                  <p className="text-xs text-gallery-muted">
+                    Explore all my repositories & experiments
+                  </p>
+                </motion.a>
               </div>
-            </div>
-
-            <Modal
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-              project={selectedProject}
-            />
-          </>
-        )}
+            </motion.div>
+          )}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

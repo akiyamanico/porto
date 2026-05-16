@@ -1,25 +1,238 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ===== BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply font-sans;
   font-family: 'Manrope', sans-serif;
+  background-color: #F5F0EB;
+  color: #1A1A1A;
+  overflow-x: hidden;
 }
 
-.glow-button {
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  padding: 12px 24px;
-  border-radius: 30px;
-  background: transparent;
-  color: #fff;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  transition: 0.4s ease;
+::selection {
+  background-color: #C43A31;
+  color: #F5F0EB;
 }
 
-.glow-button:hover {
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0EB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C43A31;
+  border-radius: 3px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.font-megrim {
+  font-family: 'Megrim', cursive;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+/* ===== HERO TEXT STROKE EFFECT ===== */
+.text-stroke {
+  -webkit-text-stroke: 2px #C43A31;
+  color: transparent;
+}
+
+.text-stroke-white {
+  -webkit-text-stroke: 1px #F5F0EB;
+  color: transparent;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes ticketShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ===== STAGGER DELAY UTILITIES ===== */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+
+/* ===== TICKET CARD ===== */
+.ticket-card {
+  background: #1A1A1A;
+  color: #F5F0EB;
+  border: 2px dashed #C43A31;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticket-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(196, 58, 49, 0.1),
+    transparent
+  );
+  animation: ticketShimmer 3s ease-in-out infinite;
+}
+
+.ticket-perforation {
+  border-top: 2px dashed rgba(196, 58, 49, 0.5);
+}
+
+/* ===== GLASS CARD ===== */
+.gallery-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(217, 208, 197, 0.6);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: #C43A31;
+}
+
+/* ===== SECTION DIVIDER ===== */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: #C43A31;
+  margin: 1rem 0;
+}
+
+/* ===== LINK HOVER ===== */
+.link-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C43A31;
+  transition: width 0.3s ease;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+/* ===== TAB STYLES ===== */
+.tab-item {
+  cursor: pointer;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.4s ease;
+  color: #6B6B6B;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.tab-item:hover {
+  color: #1A1A1A;
+}
+
+.tab-item.active {
+  color: #C43A31;
+  border-bottom-color: #C43A31;
+}
+
+/* ===== RESPONSIVE HERO IMAGE ===== */
+.hero-portrait {
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
